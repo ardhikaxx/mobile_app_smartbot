@@ -24,7 +24,7 @@ class Home extends StatelessWidget {
     }
 
     return Scaffold(
-      backgroundColor: const Color(0xFF021744),
+      backgroundColor: const Color(0xFF171719),
       body: SingleChildScrollView(
         child: SizedBox(
           width: MediaQuery.of(context).size.width,
@@ -38,8 +38,8 @@ class Home extends StatelessWidget {
                 padding: const EdgeInsets.all(16.0),
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(20),
+                  color: const Color(0xFF23222A),
+                  borderRadius: BorderRadius.circular(25),
                 ),
                 child: Column(
                   children: [
@@ -51,12 +51,12 @@ class Home extends StatelessWidget {
                           width: 65,
                           height: 65,
                         ),
-                        const SizedBox(width: 5),
+                        const SizedBox(width: 10),
                         const Text(
                           'GOGOBOT - SMART BOT',
                           style: TextStyle(
                             fontSize: 20,
-                            color: Colors.black,
+                            color: Colors.white,
                             fontWeight: FontWeight.w900,
                           ),
                         ),
@@ -71,8 +71,8 @@ class Home extends StatelessWidget {
                 padding: const EdgeInsets.all(16.0),
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(20),
+                  color: const Color(0xFF23222A),
+                  borderRadius: BorderRadius.circular(25),
                 ),
                 child: Column(
                   children: [
@@ -80,7 +80,7 @@ class Home extends StatelessWidget {
                       'MODE AVOIDER',
                       style: TextStyle(
                         fontSize: 20,
-                        color: Colors.black,
+                        color: Colors.white,
                         fontWeight: FontWeight.w900,
                       ),
                     ),
@@ -92,16 +92,18 @@ class Home extends StatelessWidget {
                           child: Icon(
                             FontAwesomeIcons.shieldCat,
                             size: 50,
-                            color: Color(0xFF021744),
+                            color: Colors.white,
                           ),
                         ),
                         const SizedBox(width: 10),
                         LiteRollingSwitch(
                           value: false,
                           textOn: 'ON',
+                          textOnColor: Colors.white,
                           textOff: 'OFF',
-                          colorOn: Colors.greenAccent,
-                          colorOff: Colors.redAccent,
+                          textOffColor: Colors.white,
+                          colorOn: const Color(0xFF3666E6),
+                          colorOff: const Color(0xFF171719),
                           iconOn: FontAwesomeIcons.check,
                           iconOff: FontAwesomeIcons.xmark,
                           textSize: 18.0,
@@ -146,8 +148,8 @@ class Home extends StatelessWidget {
                   padding: const EdgeInsets.all(15),
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
+                    color: const Color(0xFF23222A),
+                    borderRadius: BorderRadius.circular(25),
                   ),
                   child: const Column(
                     children: [
@@ -157,7 +159,7 @@ class Home extends StatelessWidget {
                           Center(
                             child: Icon(
                               FontAwesomeIcons.gamepad,
-                              color: Color(0xFF021744),
+                              color: Colors.white,
                               size: 70,
                             ),
                           ),
@@ -170,7 +172,7 @@ class Home extends StatelessWidget {
                                 'MODE',
                                 style: TextStyle(
                                   fontSize: 20,
-                                  color: Colors.black,
+                                  color: Colors.white,
                                   fontWeight: FontWeight.w900,
                                 ),
                               ),
@@ -178,7 +180,7 @@ class Home extends StatelessWidget {
                                 'MANUAL',
                                 style: TextStyle(
                                   fontSize: 20,
-                                  color: Colors.black,
+                                  color: Colors.white,
                                   fontWeight: FontWeight.w900,
                                 ),
                               ),

@@ -30,13 +30,13 @@ class _ManualModeState extends State<ManualMode> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF021744),
+      backgroundColor: const Color(0xFF171719),
       appBar: AppBar(
         title: const Text('Manual Mode',
             style: TextStyle(
               color: Colors.white,
             )),
-        backgroundColor: const Color(0xFF021744),
+        backgroundColor: const Color(0xFF171719),
         leading: IconButton(
           icon: const Icon(FontAwesomeIcons.chevronLeft, color: Colors.white),
           onPressed: () {
@@ -50,9 +50,11 @@ class _ManualModeState extends State<ManualMode> {
           LiteRollingSwitch(
             value: false,
             textOn: 'ON',
+            textOnColor: Colors.white,
             textOff: 'OFF',
-            colorOn: Colors.greenAccent,
-            colorOff: Colors.redAccent,
+            textOffColor: Colors.white,
+            colorOn: const Color(0xFF3666E6),
+            colorOff: const Color(0xFF23222A),
             iconOn: Icons.check,
             iconOff: Icons.close,
             onChanged: (bool position) async {

@@ -1,12 +1,12 @@
 import 'package:http/http.dart' as http;
-import 'package:flutter/material.dart'; // Add this import for context
+import 'package:flutter/material.dart';
 
 class SmartController {
-  final String baseUrl = 'http://192.168.4.1'; // Replace with your Wemos IP
+  final String baseUrl = 'http://192.168.4.1';
 
   Future<bool> modeAvoider(BuildContext context, bool isOn) async {
     String state = isOn ? 'on' : 'off';
-    String endpoint = '/avoider?state=$state'; // Update endpoint with state parameter
+    String endpoint = '/avoider?state=$state';
     try {
       final response = await http.get(Uri.parse(baseUrl + endpoint));
 
