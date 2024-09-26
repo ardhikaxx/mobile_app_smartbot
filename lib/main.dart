@@ -5,7 +5,6 @@ import 'package:smart_car/splash.dart';
 void main() {
   runApp(const MyApp());
 }
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
