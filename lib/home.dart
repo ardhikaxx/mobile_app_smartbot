@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:smart_car/manual_mode.dart';
 import 'controller/smart_controller.dart';
 
@@ -24,7 +23,7 @@ class Home extends StatelessWidget {
     }
 
     return Scaffold(
-      backgroundColor: const Color(0xFF171719),
+      backgroundColor: const Color(0xFF1E1E2A),
       body: SingleChildScrollView(
         child: SizedBox(
           width: MediaQuery.of(context).size.width,
@@ -38,7 +37,7 @@ class Home extends StatelessWidget {
                 padding: const EdgeInsets.all(16.0),
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: const Color(0xFF23222A),
+                  color: const Color(0xFF252638),
                   borderRadius: BorderRadius.circular(25),
                 ),
                 child: Column(
@@ -66,12 +65,94 @@ class Home extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
+              // Row(
+              //   crossAxisAlignment: CrossAxisAlignment.center,
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   children: [
+              //     Expanded(
+              //       child: Container(
+              //         margin: const EdgeInsets.only(left: 25),
+              //         padding: const EdgeInsets.all(10),
+              //         decoration: BoxDecoration(
+              //           color: Colors.white,
+              //           borderRadius: BorderRadius.circular(20),
+              //         ),
+              //         child: const Column(
+              //           children: [
+              //             SizedBox(height: 5),
+              //             Row(
+              //               mainAxisAlignment: MainAxisAlignment.center,
+              //               crossAxisAlignment: CrossAxisAlignment.center,
+              //               children: [
+              //                 Center(
+              //                   child: Icon(
+              //                     FontAwesomeIcons.circleCheck,
+              //                     color: Color(0xFF03E2AC),
+              //                     size: 25,
+              //                   ),
+              //                 ),
+              //                 SizedBox(width: 5),
+              //                 Text(
+              //                   'IYA',
+              //                   style: TextStyle(
+              //                     fontSize: 25,
+              //                     color: Color(0xFF00303C),
+              //                     fontWeight: FontWeight.w900,
+              //                   ),
+              //                 ),
+              //               ],
+              //             ),
+              //           ],
+              //         ),
+              //       ),
+              //     ),
+              //     const SizedBox(width: 20),
+              //     Expanded(
+              //       child: Container(
+              //         margin: const EdgeInsets.only(right: 25),
+              //         padding: const EdgeInsets.all(10),
+              //         decoration: BoxDecoration(
+              //           color: Colors.white,
+              //           borderRadius: BorderRadius.circular(20),
+              //         ),
+              //         child: const Column(
+              //           children: [
+              //             SizedBox(height: 5),
+              //             Row(
+              //               mainAxisAlignment: MainAxisAlignment.center,
+              //               crossAxisAlignment: CrossAxisAlignment.center,
+              //               children: [
+              //                 Center(
+              //                   child: Icon(
+              //                     FontAwesomeIcons.circleXmark,
+              //                     color: Color(0xFF03E2AC),
+              //                     size: 25,
+              //                   ),
+              //                 ),
+              //                 SizedBox(width: 5),
+              //                 Text(
+              //                   'TIDAK',
+              //                   style: TextStyle(
+              //                     fontSize: 25,
+              //                     color: Color(0xFF00303C),
+              //                     fontWeight: FontWeight.w900,
+              //                   ),
+              //                 ),
+              //               ],
+              //             ),
+              //           ],
+              //         ),
+              //       ),
+              //     ),
+              //   ],
+              // ),
+              // const SizedBox(height: 20),
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 25),
                 padding: const EdgeInsets.all(16.0),
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: const Color(0xFF23222A),
+                  color: const Color(0xFF252638),
                   borderRadius: BorderRadius.circular(25),
                 ),
                 child: Column(
@@ -102,25 +183,15 @@ class Home extends StatelessWidget {
                           textOnColor: Colors.white,
                           textOff: 'OFF',
                           textOffColor: Colors.white,
-                          colorOn: const Color(0xFF3666E6),
+                          colorOn: const Color(0xFF0078FD),
                           colorOff: const Color(0xFF171719),
                           iconOn: FontAwesomeIcons.check,
                           iconOff: FontAwesomeIcons.xmark,
                           textSize: 18.0,
                           onChanged: (bool position) async {
-                            bool success = await smartController.modeAvoider(
-                                context, position);
-                            if (!success) {
-                              AwesomeDialog(
-                                // ignore: use_build_context_synchronously
-                                context: context,
-                                dialogType: DialogType.error,
-                                animType: AnimType.bottomSlide,
-                                title: 'Koneksi Terputus',
-                                desc:
-                                    'Gagal terhubung ke robot. Silakan periksa koneksi Wi-Fi',
-                                btnOkOnPress: () {},
-                              ).show();
+                            bool success = await smartController.modeAvoider(context, position);
+                            if (success) {
+                              showSnackBar('Mode ${position ? 'ON' : 'OFF'}');
                             }
                           },
                           onTap: () {
@@ -148,7 +219,7 @@ class Home extends StatelessWidget {
                   padding: const EdgeInsets.all(15),
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    color: const Color(0xFF23222A),
+                    color: const Color(0xFF252638),
                     borderRadius: BorderRadius.circular(25),
                   ),
                   child: const Column(

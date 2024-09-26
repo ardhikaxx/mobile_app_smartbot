@@ -10,7 +10,6 @@ class ManualMode extends StatefulWidget {
   const ManualMode({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _ManualModeState createState() => _ManualModeState();
 }
 
@@ -30,13 +29,14 @@ class _ManualModeState extends State<ManualMode> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF171719),
+      backgroundColor: const Color(0xFF1E1E2A),
       appBar: AppBar(
-        title: const Text('Manual Mode',
-            style: TextStyle(
-              color: Colors.white,
-            )),
-        backgroundColor: const Color(0xFF171719),
+        title: const Text(
+          'Manual Mode',
+          style: TextStyle(color: Colors.white, fontSize: 20),
+        ),
+        backgroundColor: const Color(0xFF252638),
+        elevation: 0,
         leading: IconButton(
           icon: const Icon(FontAwesomeIcons.chevronLeft, color: Colors.white),
           onPressed: () {
@@ -44,53 +44,95 @@ class _ManualModeState extends State<ManualMode> {
           },
         ),
       ),
-      body: Column(
-        children: [
-          const SizedBox(height: 20),
-          LiteRollingSwitch(
-            value: false,
-            textOn: 'ON',
-            textOnColor: Colors.white,
-            textOff: 'OFF',
-            textOffColor: Colors.white,
-            colorOn: const Color(0xFF3666E6),
-            colorOff: const Color(0xFF23222A),
-            iconOn: Icons.check,
-            iconOff: Icons.close,
-            onChanged: (bool position) async {
-              bool success = await smartController.toggleManualMode(position);
-              if (success) {
-                setState(() {
-                  isManualModeOn = position;
-                });
-              } else {
-                print('Failed to toggle manual mode');
-              }
-            },
-            onTap: () {
-              showSnackBar('Switch tapped!');
-            },
-            onDoubleTap: () {
-              showSnackBar('Switch double tapped!');
-            },
-            onSwipe: () {
-              showSnackBar('Switch swiped!');
-            },
-          ),
-          const SizedBox(height: 40),
-          Expanded(
-            child: Center(
-              child: Joystick(
-                mode: JoystickMode.all,
-                listener: (details) {
-                  if (isManualModeOn) {
-                    smartController.handleJoystick(details);
-                  }
-                },
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const SizedBox(height: 20),
+            Text(
+              'Control your robot manually',
+              style: TextStyle(
+                color: Colors.white.withOpacity(0.8),
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
               ),
             ),
-          ),
-        ],
+            const SizedBox(height: 20),
+            LiteRollingSwitch(
+              value: isManualModeOn,
+              textOn: 'ON',
+              textOnColor: Colors.white,
+              textOff: 'OFF',
+              textOffColor: Colors.white,
+              colorOn: const Color(0xFF3666E6),
+              colorOff: const Color(0xFF252638),
+              iconOn: FontAwesomeIcons.check,
+              iconOff: FontAwesomeIcons.xmark,
+              onChanged: (bool position) async {
+                bool success = await smartController.toggleManualMode(position);
+                if (success) {
+                  showSnackBar('Manual Mode ${position ? 'ON' : 'OFF'}');
+                }
+              },
+              onTap: () {
+                showSnackBar('Switch tapped!');
+              },
+              onDoubleTap: () {
+                showSnackBar('Switch double tapped!');
+              },
+              onSwipe: () {
+                showSnackBar('Switch swiped!');
+              },
+            ),
+            const SizedBox(height: 40),
+            Expanded(
+              child: Center(
+                child: Container(
+                  width: 250,
+                  height: 250,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF252638),
+                    borderRadius: BorderRadius.circular(150),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.2),
+                        spreadRadius: 5,
+                        blurRadius: 10,
+                        offset: const Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  child: Joystick(
+                    mode: JoystickMode.all,
+                    listener: (details) {
+                      if (isManualModeOn) {
+                        smartController.handleJoystick(details);
+                      }
+                    },
+                    base: JoystickBase(
+                      decoration: JoystickBaseDecoration(
+                        color: const Color(0xFF252638),
+                        drawOuterCircle: false,
+                      ),
+                      arrowsDecoration: JoystickArrowsDecoration(
+                        color: const Color(0xFF3666E6),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            Text(
+              'Use the joystick to move the robot',
+              style: TextStyle(
+                color: Colors.white.withOpacity(0.8),
+                fontSize: 14,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
