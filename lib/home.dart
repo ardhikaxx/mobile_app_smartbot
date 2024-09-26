@@ -6,177 +6,95 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:smart_car/manual_mode.dart';
 import 'controller/smart_controller.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({super.key});
 
   @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  final SmartController smartController = SmartController();
+  Color shieldIconColor = const Color(0xFF0078FD);
+
+  void showSnackBar(String message) {
+    AnimatedSnackBar.material(
+      message,
+      type: AnimatedSnackBarType.success,
+      mobileSnackBarPosition: MobileSnackBarPosition.bottom,
+      duration: const Duration(seconds: 2),
+    ).show(context);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final SmartController smartController = SmartController();
-
-    void showSnackBar(String message) {
-      AnimatedSnackBar.material(
-        message,
-        type: AnimatedSnackBarType.success,
-        mobileSnackBarPosition: MobileSnackBarPosition.bottom,
-        duration: const Duration(seconds: 2),
-      ).show(context);
-    }
-
     return Scaffold(
-      backgroundColor: const Color(0xFF1E1E2A),
+      backgroundColor: const Color(0xFF121212),
       body: SingleChildScrollView(
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 30.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(height: 100),
+              const SizedBox(height: 40),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'assets/logo.png',
+                    width: 80,
+                    height: 80,
+                  ),
+                  const SizedBox(width: 10),
+                  const Text(
+                    'GOGOBOT',
+                    style: TextStyle(
+                      fontSize: 28,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 1.2,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 40),
+              // Card untuk Mode Avoider
               Container(
-                margin: const EdgeInsets.symmetric(horizontal: 25),
-                padding: const EdgeInsets.all(16.0),
                 width: double.infinity,
+                padding: const EdgeInsets.all(25),
                 decoration: BoxDecoration(
-                  color: const Color(0xFF252638),
-                  borderRadius: BorderRadius.circular(25),
-                ),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          'assets/logo.png',
-                          width: 65,
-                          height: 65,
-                        ),
-                        const SizedBox(width: 10),
-                        const Text(
-                          'GOGOBOT - SMART BOT',
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w900,
-                          ),
-                        ),
-                      ],
+                  color: const Color(0xFF1F1F1F),
+                  borderRadius: BorderRadius.circular(15),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.2),
+                      spreadRadius: 5,
+                      blurRadius: 10,
+                      offset: const Offset(0, 3),
                     ),
                   ],
-                ),
-              ),
-              const SizedBox(height: 20),
-              // Row(
-              //   crossAxisAlignment: CrossAxisAlignment.center,
-              //   mainAxisAlignment: MainAxisAlignment.center,
-              //   children: [
-              //     Expanded(
-              //       child: Container(
-              //         margin: const EdgeInsets.only(left: 25),
-              //         padding: const EdgeInsets.all(10),
-              //         decoration: BoxDecoration(
-              //           color: Colors.white,
-              //           borderRadius: BorderRadius.circular(20),
-              //         ),
-              //         child: const Column(
-              //           children: [
-              //             SizedBox(height: 5),
-              //             Row(
-              //               mainAxisAlignment: MainAxisAlignment.center,
-              //               crossAxisAlignment: CrossAxisAlignment.center,
-              //               children: [
-              //                 Center(
-              //                   child: Icon(
-              //                     FontAwesomeIcons.circleCheck,
-              //                     color: Color(0xFF03E2AC),
-              //                     size: 25,
-              //                   ),
-              //                 ),
-              //                 SizedBox(width: 5),
-              //                 Text(
-              //                   'IYA',
-              //                   style: TextStyle(
-              //                     fontSize: 25,
-              //                     color: Color(0xFF00303C),
-              //                     fontWeight: FontWeight.w900,
-              //                   ),
-              //                 ),
-              //               ],
-              //             ),
-              //           ],
-              //         ),
-              //       ),
-              //     ),
-              //     const SizedBox(width: 20),
-              //     Expanded(
-              //       child: Container(
-              //         margin: const EdgeInsets.only(right: 25),
-              //         padding: const EdgeInsets.all(10),
-              //         decoration: BoxDecoration(
-              //           color: Colors.white,
-              //           borderRadius: BorderRadius.circular(20),
-              //         ),
-              //         child: const Column(
-              //           children: [
-              //             SizedBox(height: 5),
-              //             Row(
-              //               mainAxisAlignment: MainAxisAlignment.center,
-              //               crossAxisAlignment: CrossAxisAlignment.center,
-              //               children: [
-              //                 Center(
-              //                   child: Icon(
-              //                     FontAwesomeIcons.circleXmark,
-              //                     color: Color(0xFF03E2AC),
-              //                     size: 25,
-              //                   ),
-              //                 ),
-              //                 SizedBox(width: 5),
-              //                 Text(
-              //                   'TIDAK',
-              //                   style: TextStyle(
-              //                     fontSize: 25,
-              //                     color: Color(0xFF00303C),
-              //                     fontWeight: FontWeight.w900,
-              //                   ),
-              //                 ),
-              //               ],
-              //             ),
-              //           ],
-              //         ),
-              //       ),
-              //     ),
-              //   ],
-              // ),
-              // const SizedBox(height: 20),
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 25),
-                padding: const EdgeInsets.all(16.0),
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: const Color(0xFF252638),
-                  borderRadius: BorderRadius.circular(25),
                 ),
                 child: Column(
                   children: [
                     const Text(
-                      'MODE AVOIDER',
+                      'Avoider Mode',
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 22,
                         color: Colors.white,
-                        fontWeight: FontWeight.w900,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Center(
-                          child: Icon(
-                            FontAwesomeIcons.shieldCat,
-                            size: 50,
-                            color: Colors.white,
-                          ),
+                        Icon(
+                          FontAwesomeIcons.shieldCat,
+                          size: 55,
+                          color: shieldIconColor,
                         ),
                         const SizedBox(width: 10),
+                        // Switch Mode Avoider
                         LiteRollingSwitch(
                           value: false,
                           textOn: 'ON',
@@ -184,12 +102,18 @@ class Home extends StatelessWidget {
                           textOff: 'OFF',
                           textOffColor: Colors.white,
                           colorOn: const Color(0xFF0078FD),
-                          colorOff: const Color(0xFF171719),
+                          colorOff: const Color(0xFF3A3A3A),
                           iconOn: FontAwesomeIcons.check,
                           iconOff: FontAwesomeIcons.xmark,
-                          textSize: 18.0,
+                          textSize: 16.0,
                           onChanged: (bool position) async {
-                            bool success = await smartController.modeAvoider(context, position);
+                            setState(() {
+                              shieldIconColor = position
+                                  ? Colors.white
+                                  : const Color(0xFF0078FD);
+                            });
+                            bool success = await smartController.modeAvoider(
+                                context, position);
                             if (success) {
                               showSnackBar('Mode ${position ? 'ON' : 'OFF'}');
                             }
@@ -209,53 +133,53 @@ class Home extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 30),
+              // Card untuk Mode Manual
               GestureDetector(
                 onTap: () {
                   Get.to(() => const ManualMode());
                 },
                 child: Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 25),
-                  padding: const EdgeInsets.all(15),
                   width: double.infinity,
+                  padding: const EdgeInsets.all(25),
                   decoration: BoxDecoration(
-                    color: const Color(0xFF252638),
-                    borderRadius: BorderRadius.circular(25),
+                    color: const Color(0xFF1F1F1F),
+                    borderRadius: BorderRadius.circular(15),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.2),
+                        spreadRadius: 5,
+                        blurRadius: 10,
+                        offset: const Offset(0, 3),
+                      ),
+                    ],
                   ),
-                  child: const Column(
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                      Icon(
+                        FontAwesomeIcons.gamepad,
+                        color: Color(0xFF0078FD),
+                        size: 55,
+                      ),
+                      SizedBox(width: 25),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Center(
-                            child: Icon(
-                              FontAwesomeIcons.gamepad,
+                          Text(
+                            'Manual Mode',
+                            style: TextStyle(
+                              fontSize: 22,
                               color: Colors.white,
-                              size: 70,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
-                          SizedBox(width: 30),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'MODE',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w900,
-                                ),
-                              ),
-                              Text(
-                                'MANUAL',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w900,
-                                ),
-                              ),
-                            ],
+                          Text(
+                            'Control your bot manually',
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.grey,
+                            ),
                           ),
                         ],
                       ),
@@ -263,6 +187,17 @@ class Home extends StatelessWidget {
                   ),
                 ),
               ),
+              const SizedBox(height: 50),
+              // Footer
+              const Text(
+                'Created by Ardhika',
+                style: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+              const SizedBox(height: 20),
             ],
           ),
         ),

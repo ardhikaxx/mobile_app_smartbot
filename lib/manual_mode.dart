@@ -10,6 +10,7 @@ class ManualMode extends StatefulWidget {
   const ManualMode({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _ManualModeState createState() => _ManualModeState();
 }
 
@@ -17,6 +18,7 @@ class _ManualModeState extends State<ManualMode> {
   final SmartController smartController = SmartController();
   bool isManualModeOn = false;
 
+  // Function to show animated snackbar messages
   void showSnackBar(String message) {
     AnimatedSnackBar.material(
       message,
@@ -29,13 +31,13 @@ class _ManualModeState extends State<ManualMode> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF1E1E2A),
+      backgroundColor: const Color(0xFF121212),
       appBar: AppBar(
         title: const Text(
           'Manual Mode',
           style: TextStyle(color: Colors.white, fontSize: 20),
         ),
-        backgroundColor: const Color(0xFF252638),
+        backgroundColor: const Color(0xFF1F1F1F),
         elevation: 0,
         leading: IconButton(
           icon: const Icon(FontAwesomeIcons.chevronLeft, color: Colors.white),
@@ -53,7 +55,7 @@ class _ManualModeState extends State<ManualMode> {
             Text(
               'Control your robot manually',
               style: TextStyle(
-                color: Colors.white.withOpacity(0.8),
+                color: Colors.white.withOpacity(0.9),
                 fontSize: 16,
                 fontWeight: FontWeight.w400,
               ),
@@ -72,6 +74,9 @@ class _ManualModeState extends State<ManualMode> {
               onChanged: (bool position) async {
                 bool success = await smartController.toggleManualMode(position);
                 if (success) {
+                  setState(() {
+                    isManualModeOn = position;
+                  });
                   showSnackBar('Manual Mode ${position ? 'ON' : 'OFF'}');
                 }
               },
@@ -88,36 +93,20 @@ class _ManualModeState extends State<ManualMode> {
             const SizedBox(height: 40),
             Expanded(
               child: Center(
-                child: Container(
-                  width: 250,
-                  height: 250,
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF252638),
-                    borderRadius: BorderRadius.circular(150),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.2),
-                        spreadRadius: 5,
-                        blurRadius: 10,
-                        offset: const Offset(0, 3),
-                      ),
-                    ],
-                  ),
-                  child: Joystick(
-                    mode: JoystickMode.all,
-                    listener: (details) {
-                      if (isManualModeOn) {
-                        smartController.handleJoystick(details);
-                      }
-                    },
-                    base: JoystickBase(
-                      decoration: JoystickBaseDecoration(
-                        color: const Color(0xFF252638),
-                        drawOuterCircle: false,
-                      ),
-                      arrowsDecoration: JoystickArrowsDecoration(
-                        color: const Color(0xFF3666E6),
-                      ),
+                child: Joystick(
+                  mode: JoystickMode.all,
+                  listener: (details) {
+                    if (isManualModeOn) {
+                      smartController.handleJoystick(details);
+                    }
+                  },
+                  base: JoystickBase(
+                    decoration: JoystickBaseDecoration(
+                      color: const Color(0xFF252638),
+                      drawOuterCircle: false,
+                    ),
+                    arrowsDecoration: JoystickArrowsDecoration(
+                      color: const Color(0xFF3666E6),
                     ),
                   ),
                 ),
