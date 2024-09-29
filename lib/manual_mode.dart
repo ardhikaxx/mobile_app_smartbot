@@ -34,7 +34,7 @@ class _ManualModeState extends State<ManualMode> {
       backgroundColor: const Color(0xFF121212),
       appBar: AppBar(
         title: const Text(
-          'Manual Mode',
+          'Manual Control Mode',
           style: TextStyle(color: Colors.white, fontSize: 20),
         ),
         backgroundColor: const Color(0xFF1F1F1F),
@@ -51,7 +51,7 @@ class _ManualModeState extends State<ManualMode> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const SizedBox(height: 20),
+            const SizedBox(height: 30),
             Text(
               'Control your robot manually',
               style: TextStyle(

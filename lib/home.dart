@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:smart_car/gesture_mode.dart';
 import 'package:smart_car/manual_mode.dart';
 import 'controller/smart_controller.dart';
 
@@ -134,7 +135,6 @@ class _HomeState extends State<Home> {
                 ),
               ),
               const SizedBox(height: 30),
-              // Card untuk Mode Manual
               GestureDetector(
                 onTap: () {
                   Get.to(() => const ManualMode());
@@ -176,6 +176,59 @@ class _HomeState extends State<Home> {
                           ),
                           Text(
                             'Control your bot manually',
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 30),
+              GestureDetector(
+                onTap: () {
+                  Get.to(() => const GestureModePage());
+                },
+                child: Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(25),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF1F1F1F),
+                    borderRadius: BorderRadius.circular(15),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.2),
+                        spreadRadius: 5,
+                        blurRadius: 10,
+                        offset: const Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        FontAwesomeIcons.handSparkles,
+                        color: Color(0xFF0078FD),
+                        size: 48,
+                      ),
+                      SizedBox(width: 20),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Gesture Mode',
+                            style: TextStyle(
+                              fontSize: 22,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          Text(
+                            'Control your bot gesturally',
                             style: TextStyle(
                               fontSize: 16,
                               color: Colors.grey,

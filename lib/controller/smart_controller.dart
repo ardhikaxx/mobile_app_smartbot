@@ -42,7 +42,7 @@ class SmartController {
     }
   }
 
-  Future<void> sendCommand(String command) async {
+  Future<void> sendManualCommand(String command) async {
     try {
       final url = Uri.parse('$baseUrl/$command');
       final response = await http.get(url);
@@ -62,15 +62,47 @@ class SmartController {
     final double y = details.y;
 
     if (y < -0.5) {
-      sendCommand("forward");
+      sendManualCommand("forward");
     } else if (y > 0.5) {
-      sendCommand("backward");
+      sendManualCommand("backward");
     } else if (x < -0.5) {
-      sendCommand("left");
+      sendManualCommand("left");
     } else if (x > 0.5) {
-      sendCommand("right");
+      sendManualCommand("right");
     } else {
-      sendCommand("stop");
+      sendManualCommand("stop");
+    }
+  }
+
+  Future<bool> toggleGestureMode(bool isOn) async {
+    String state = isOn ? 'on' : 'off';
+    String endpoint = '/gesture?state=$state';
+    try {
+      final response = await http.get(Uri.parse(baseUrl + endpoint));
+      if (response.statusCode == 200) {
+        print('Gesture Mode ${isOn ? 'ON' : 'OFF'}');
+        return true;
+      } else {
+        print('Failed to communicate with Wemos');
+        return false;
+      }
+    } catch (e) {
+      print('Error connecting to robot: $e');
+      return false;
+    }
+  }
+
+  Future<void> sendGestureCommand(String command) async {
+    try {
+      final url = Uri.parse('$baseUrl/gesture/$command');
+      final response = await http.get(url);
+      if (response.statusCode == 200) {
+        print("Gesture Command $command sent successfully: ${response.body}");
+      } else {
+        print("Failed to send gesture command: ${response.statusCode}");
+      }
+    } catch (e) {
+      print("Error: $e");
     }
   }
 }
