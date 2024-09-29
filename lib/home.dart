@@ -59,21 +59,106 @@ class _HomeState extends State<Home> {
                 ],
               ),
               const SizedBox(height: 40),
-              // Card untuk Mode Avoider
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: () async {
+                        await smartController
+                            .sendYesCommand(); // Kirim perintah untuk servo vertical
+                        showSnackBar("Servo vertical mengangguk");
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.only(left: 10),
+                        padding: const EdgeInsets.all(15),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF1F1F1F),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: const Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Center(
+                                  child: Icon(
+                                    FontAwesomeIcons.check,
+                                    color: Color(0xFF0078FD),
+                                    size: 40,
+                                  ),
+                                ),
+                                SizedBox(width: 10),
+                                Text(
+                                  'Iya',
+                                  style: TextStyle(
+                                    fontSize: 30,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w900,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 20),
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: () async {
+                        await smartController
+                            .sendNoCommand(); // Kirim perintah untuk servo horizontal
+                        showSnackBar("Servo horizontal geleng-geleng");
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.only(right: 10),
+                        padding: const EdgeInsets.all(15),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF1F1F1F),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: const Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Center(
+                                  child: Icon(
+                                    FontAwesomeIcons.xmark,
+                                    color: Color(0xFF0078FD),
+                                    size: 40,
+                                  ),
+                                ),
+                                SizedBox(width: 10),
+                                Text(
+                                  'Tidak',
+                                  style: TextStyle(
+                                    fontSize: 30,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w900,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
               Container(
+                margin: const EdgeInsets.only(left: 10, right: 10),
                 width: double.infinity,
                 padding: const EdgeInsets.all(25),
                 decoration: BoxDecoration(
                   color: const Color(0xFF1F1F1F),
                   borderRadius: BorderRadius.circular(15),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.2),
-                      spreadRadius: 5,
-                      blurRadius: 10,
-                      offset: const Offset(0, 3),
-                    ),
-                  ],
                 ),
                 child: Column(
                   children: [
@@ -140,19 +225,12 @@ class _HomeState extends State<Home> {
                   Get.to(() => const ManualMode());
                 },
                 child: Container(
+                  margin: const EdgeInsets.only(left: 10, right: 10),
                   width: double.infinity,
                   padding: const EdgeInsets.all(25),
                   decoration: BoxDecoration(
                     color: const Color(0xFF1F1F1F),
                     borderRadius: BorderRadius.circular(15),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.2),
-                        spreadRadius: 5,
-                        blurRadius: 10,
-                        offset: const Offset(0, 3),
-                      ),
-                    ],
                   ),
                   child: const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -193,19 +271,12 @@ class _HomeState extends State<Home> {
                   Get.to(() => const GestureModePage());
                 },
                 child: Container(
+                  margin: const EdgeInsets.only(left: 10, right: 10),
                   width: double.infinity,
                   padding: const EdgeInsets.all(25),
                   decoration: BoxDecoration(
                     color: const Color(0xFF1F1F1F),
                     borderRadius: BorderRadius.circular(15),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.2),
-                        spreadRadius: 5,
-                        blurRadius: 10,
-                        offset: const Offset(0, 3),
-                      ),
-                    ],
                   ),
                   child: const Row(
                     mainAxisAlignment: MainAxisAlignment.center,

@@ -113,7 +113,7 @@ class _GestureModePageState extends State<GestureModePage> {
                 textOnColor: Colors.white,
                 textOff: 'OFF',
                 textOffColor: Colors.white,
-                colorOn: const Color(0xFF3666E6),
+                colorOn: const Color(0xFF0078FD),
                 colorOff: const Color(0xFF252638),
                 iconOn: FontAwesomeIcons.check,
                 iconOff: FontAwesomeIcons.xmark,
@@ -154,7 +154,7 @@ class _GestureModePageState extends State<GestureModePage> {
                                   ? FontAwesomeIcons.arrowLeft
                                   : FontAwesomeIcons.xmark,
                   size: 150,
-                  color: const Color(0xFF3666E6),
+                  color: const Color(0xFF0078FD),
                 ),
               ),
             ),

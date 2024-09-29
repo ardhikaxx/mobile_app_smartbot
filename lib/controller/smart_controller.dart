@@ -4,6 +4,34 @@ import 'package:flutter/material.dart';
 class SmartController {
   final String baseUrl = 'http://192.168.4.1';
 
+  Future<void> sendYesCommand() async {
+    try {
+      final url = Uri.parse('$baseUrl/servo?state=up'); // Perintah untuk menggerakkan servo vertikal
+      final response = await http.get(url);
+      if (response.statusCode == 200) {
+        print("Servo vertical mengangguk");
+      } else {
+        print("Gagal mengirim perintah: ${response.statusCode}");
+      }
+    } catch (e) {
+      print("Error: $e");
+    }
+  }
+
+  Future<void> sendNoCommand() async {
+    try {
+      final url = Uri.parse('$baseUrl/servo?state=down'); // Perintah untuk menggerakkan servo horizontal
+      final response = await http.get(url);
+      if (response.statusCode == 200) {
+        print("Servo horizontal geleng-geleng");
+      } else {
+        print("Gagal mengirim perintah: ${response.statusCode}");
+      }
+    } catch (e) {
+      print("Error: $e");
+    }
+  }
+
   Future<bool> modeAvoider(BuildContext context, bool isOn) async {
     String state = isOn ? 'on' : 'off';
     String endpoint = '/avoider?state=$state';

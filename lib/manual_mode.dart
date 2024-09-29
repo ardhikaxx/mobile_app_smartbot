@@ -67,7 +67,7 @@ class _ManualModeState extends State<ManualMode> {
               textOnColor: Colors.white,
               textOff: 'OFF',
               textOffColor: Colors.white,
-              colorOn: const Color(0xFF3666E6),
+              colorOn: const Color(0xFF0078FD),
               colorOff: const Color(0xFF252638),
               iconOn: FontAwesomeIcons.check,
               iconOff: FontAwesomeIcons.xmark,
@@ -106,7 +106,7 @@ class _ManualModeState extends State<ManualMode> {
                       drawOuterCircle: false,
                     ),
                     arrowsDecoration: JoystickArrowsDecoration(
-                      color: const Color(0xFF3666E6),
+                      color: const Color(0xFF0078FD),
                     ),
                   ),
                 ),
