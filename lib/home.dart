@@ -65,8 +65,7 @@ class _HomeState extends State<Home> {
                   Expanded(
                     child: GestureDetector(
                       onTap: () async {
-                        await smartController
-                            .sendYesCommand(); // Kirim perintah untuk servo vertical
+                        await smartController.sendYesCommand();
                         showSnackBar("Servo vertical mengangguk");
                       },
                       child: Container(
@@ -109,8 +108,7 @@ class _HomeState extends State<Home> {
                   Expanded(
                     child: GestureDetector(
                       onTap: () async {
-                        await smartController
-                            .sendNoCommand(); // Kirim perintah untuk servo horizontal
+                        await smartController.sendNoCommand();
                         showSnackBar("Servo horizontal geleng-geleng");
                       },
                       child: Container(
